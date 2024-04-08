@@ -3,6 +3,8 @@ package francescoandrisani.progettoU5Week1.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "edifici")
 @NoArgsConstructor
@@ -21,8 +23,9 @@ public class Edificio {
     private String citta;
     private String provincia;
     private int cap;
-    @OneToMany(mappedBy = "edificio")
     private String stato;
+    @OneToMany(mappedBy = "edificio")
+    private List<Postazione> postazioni;
 
     //Costruttore
     public Edificio(String nome, String indirizzo, String citta, String provincia, int cap, String stato) {
@@ -32,6 +35,7 @@ public class Edificio {
         this.provincia = provincia;
         this.cap = cap;
         this.stato = stato;
+
     }
 
 }

@@ -1,9 +1,6 @@
 package francescoandrisani.progettoU5Week1.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,21 +16,26 @@ import java.util.UUID;
 public class Postazione {
 
     //Attributi
-    private UUID id_postazione;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_postazione;
     private String descrizione;
+
+    @Enumerated(EnumType.STRING)
     private TipoPostazione tipo;
     private int maxPersone;
+
+    @Enumerated(EnumType.STRING)
     private StatoPostazione stato;
     @ManyToOne
     @JoinColumn(name = "id_edificio", nullable = false)
     private Edificio edificio;
 
     //Costruttore
-    public Postazione(String descrizione, TipoPostazione tipo, int maxPersone, StatoPostazione stato, Edificio edificio) {
+    public Postazione(String descrizione, TipoPostazione tipo, int maxPersone, Edificio edificio) {
         this.descrizione = descrizione;
         this.tipo = tipo;
         this.maxPersone = maxPersone;
-        this.stato = stato;
         this.edificio = edificio;
     }
 

@@ -13,9 +13,6 @@ public class EdificioService {
 
     public void save(Edificio newEdificio) {
 
-        if(edificioDAO.existByName(newEdificio.getNome())) {
-            throw new RuntimeException("L'edificio " + newEdificio.getNome() + " probabilmente esiste già! Contatta l'assistenza per maggiori chiarimenti");
-        }
 
         edificioDAO.save(newEdificio);
         log.info("Edificio salvato con successo!");
