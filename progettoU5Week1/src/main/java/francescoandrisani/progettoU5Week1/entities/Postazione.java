@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -30,6 +32,9 @@ public class Postazione {
     @ManyToOne
     @JoinColumn(name = "id_edificio", nullable = false)
     private Edificio edificio;
+
+    @ManyToMany(mappedBy = "categoriesList")
+    private List<Prenotazione> prenotazioniList;
 
     //Costruttore
     public Postazione(String descrizione, TipoPostazione tipo, int maxPersone, Edificio edificio) {
